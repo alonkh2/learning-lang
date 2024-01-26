@@ -1,0 +1,29 @@
+.card {
+  position: absolute;
+  touch-action: none;
+  background: lightgray;
+  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  width: 300px;
+  height: 400px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-direction: column;
+  padding-inline: 10px;
+}
+
+.container {
+    width: 100%;
+}
+
+.sub {
+  width: 100%;
+  direction: rtl;
+  opacity: 0;
+  transition: opacity 0.7s;
+}
+
+.sub.showing {
+  opacity: 1;
+}
