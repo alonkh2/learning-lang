@@ -11,12 +11,17 @@ export type Word = {
   id?: string;
 };
 
-interface DeckProps {
-  words: Word[];
-}
-
-export const Deck: React.FC<DeckProps> = ({ words }) => {
+export const Deck: React.FC = () => {
+  const [words, setWords] = useState<Word[]>([]);
   const [currentShowing, setCurrentShowing] = useState<number[]>([0]);
+
+  useEffect(() => {
+    fetch("/api/getAllWords")
+      .then((response) => response.json())
+      .then((data: { words: Word[] }) => {
+        setWords(data.words);
+      });
+  }, []);
 
   const handleSwipe = (direction: "left" | "right") => {
     setCurrentShowing((prev) => {

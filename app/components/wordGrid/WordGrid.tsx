@@ -21,14 +21,10 @@ import SaveIcon from "@mui/icons-material/Save";
 import CancelIcon from "@mui/icons-material/Close";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { getFirebaseId } from "@/app/firebase/getRandomId";
 
 import styles from "./WordGrid.module.css";
-
-interface WordGridProps {
-  words: Word[];
-}
 
 interface EditToolbarProps {
   setRows: (newRows: (oldRows: GridRowsProp) => GridRowsProp) => void;
@@ -61,11 +57,20 @@ function EditToolbar(props: EditToolbarProps) {
   );
 }
 
-const FullFeaturedCrudGrid: React.FC<WordGridProps> = ({ words }) => {
+const FullFeaturedCrudGrid: React.FC = () => {
+  const [words, setWords] = useState<Word[]>([]);
   const [rows, setRows] = useState(
     words.map((word) => ({ ...word, isNew: false }))
   );
   const [rowModesModel, setRowModesModel] = useState<GridRowModesModel>({});
+
+  useEffect(() => {
+    fetch("/api/getAllWords")
+      .then((response) => response.json())
+      .then((data: { words: Word[] }) => {
+        setWords(data.words);
+      });
+  }, []);
 
   const handleRowEditStop: GridEventListener<"rowEditStop"> = (
     params,
