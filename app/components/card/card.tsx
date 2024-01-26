@@ -11,6 +11,7 @@ interface SwipeableCardProps {
   title: string;
   translation: string;
   explanation: string;
+  color: string;
 }
 
 const SwipeableCard: React.FC<SwipeableCardProps> = ({
@@ -19,6 +20,7 @@ const SwipeableCard: React.FC<SwipeableCardProps> = ({
   translation,
   explanation,
   onFinish,
+  color,
 }) => {
   const [{ x, y }, api] = useSpring(() => ({ x: 0, y: 0 }));
 
@@ -62,6 +64,7 @@ const SwipeableCard: React.FC<SwipeableCardProps> = ({
       style={{
         x,
         y,
+        background: color,
       }}
     >
       <div className={styles.container}>

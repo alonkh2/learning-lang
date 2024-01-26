@@ -11,6 +11,16 @@ export type Word = {
   id?: string;
 };
 
+const colors = [
+  "#7BD3EA",
+  "#A1EEBD",
+  "#F6F7C4",
+  "#F6D6D6",
+  "#BEADFA",
+  "#9BABB8",
+  "#EEE3CB",
+];
+
 export const Deck: React.FC = () => {
   const [words, setWords] = useState<Word[]>([]);
   const [currentShowing, setCurrentShowing] = useState<number[]>([0]);
@@ -61,6 +71,7 @@ export const Deck: React.FC = () => {
               title={words[index].word}
               translation={words[index].definition}
               explanation={words[index].explanation}
+              color={colors[index % colors.length]}
             />
           );
         })}
