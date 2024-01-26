@@ -141,6 +141,7 @@ const FullFeaturedCrudGrid: React.FC<WordGridProps> = ({ words }) => {
         if (isInEditMode) {
           return [
             <GridActionsCellItem
+              key={"save"}
               icon={<SaveIcon />}
               label="Save"
               sx={{
@@ -149,6 +150,7 @@ const FullFeaturedCrudGrid: React.FC<WordGridProps> = ({ words }) => {
               onClick={handleSaveClick(id)}
             />,
             <GridActionsCellItem
+              key={"cancel"}
               icon={<CancelIcon />}
               label="Cancel"
               className="textPrimary"
@@ -160,6 +162,7 @@ const FullFeaturedCrudGrid: React.FC<WordGridProps> = ({ words }) => {
 
         return [
           <GridActionsCellItem
+            key={"edit"}
             icon={<EditIcon />}
             label="Edit"
             className="textPrimary"
@@ -167,6 +170,7 @@ const FullFeaturedCrudGrid: React.FC<WordGridProps> = ({ words }) => {
             color="inherit"
           />,
           <GridActionsCellItem
+            key={"delete"}
             icon={<DeleteIcon />}
             label="Delete"
             onClick={handleDeleteClick(id)}
