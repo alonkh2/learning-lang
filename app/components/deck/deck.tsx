@@ -23,7 +23,7 @@ export const Deck: React.FC<DeckProps> = ({ words }) => {
       let randomIndex: number;
       do {
         randomIndex = generateRandomIndex();
-      } while (randomIndex === prev[prev.length - 1]);
+      } while (currentShowing.find((v) => v == randomIndex));
       const newCurr = [...prev, randomIndex];
 
       return newCurr;
