@@ -69,6 +69,7 @@ const FullFeaturedCrudGrid: React.FC = () => {
       .then((response) => response.json())
       .then((data: { words: Word[] }) => {
         setWords(data.words);
+        setRows(data.words.map((word) => ({ ...word, isNew: false })));
       });
   }, []);
 
@@ -191,6 +192,7 @@ const FullFeaturedCrudGrid: React.FC = () => {
       style={{ height: "100%", width: "100%" }}
       rows={rows}
       columns={columns}
+      loading={!rows.length}
       editMode="row"
       rowModesModel={rowModesModel}
       onRowModesModelChange={handleRowModesModelChange}
